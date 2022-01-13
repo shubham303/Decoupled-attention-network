@@ -7,7 +7,7 @@ from torchvision import transforms
 from DAN import *
 
 global_cfgs = {
-    'state': 'Test',
+    'state': 'Train',
     'epoch': 10,
     'show_interval': 50,
     'test_interval': 1000
@@ -16,7 +16,8 @@ global_cfgs = {
 dataset_cfgs = {
     'dataset_train': lmdbDataset,
     'dataset_train_args': {
-        'roots': ['path/to/lmdb_ST', 'path/to/lmdb_SK'],
+        'roots': ['/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/training/MJ/MJ_test', '/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/training/MJ/MJ_train'
+                  ,'/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/training/ST'],
         'img_height': 32,
         'img_width': 128,
         'transform': transforms.Compose([transforms.ToTensor()]),
@@ -30,7 +31,9 @@ dataset_cfgs = {
 
     'dataset_test': lmdbDataset,
     'dataset_test_args': {
-        'roots': ['path/to/lmdb_IIIT5K_test/or/any/other/testset'],
+        'roots': ['/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/evaluation/IIIT',
+                  '/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/evaluation/kaggle_train',
+                  '/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/evaluation/kaggle_val'],
         'img_height': 32,
         'img_width': 128,
         'transform': transforms.Compose([transforms.ToTensor()]),
@@ -61,14 +64,14 @@ net_cfgs = {
     },
     'DTD': DTD,
     'DTD_args': {
-        'nclass': 38, # extra 2 classes for Unkonwn and End-token
+        'nclass': 130, # extra 2 classes for Unkonwn and End-token
         'nchannel': 512,
         'dropout': 0.3,
     },
 
-    'init_state_dict_fe': 'models/scene/exp1_E4_I20000-239703_M0.pth',
-    'init_state_dict_cam': 'models/scene/exp1_E4_I20000-239703_M1.pth',
-    'init_state_dict_dtd': 'models/scene/exp1_E4_I20000-239703_M2.pth',
+    'init_state_dict_fe': None,
+    'init_state_dict_cam': None,
+    'init_state_dict_dtd': None,
 }
 
 optimizer_cfgs = {
