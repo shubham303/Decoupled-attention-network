@@ -16,8 +16,8 @@ global_cfgs = {
 dataset_cfgs = {
     'dataset_train': lmdbDataset,
     'dataset_train_args': {
-        'roots': ['/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/training/MJ/MJ_test', '/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/training/MJ/MJ_train'
-                  ,'/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/training/ST'],
+        'roots': ['/home/ocr/datasets/recognition/hindi/training/MJ/MJ_test', '/home/ocr/datasets/recognition/hindi/training/MJ/MJ_train'
+                  ,'/home/ocr/datasets/recognition/hindi/training/ST'],
         'img_height': 32,
         'img_width': 128,
         'transform': transforms.Compose([transforms.ToTensor()]),
@@ -31,9 +31,9 @@ dataset_cfgs = {
 
     'dataset_test': lmdbDataset,
     'dataset_test_args': {
-        'roots': ['/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/evaluation/IIIT',
-                  '/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/evaluation/kaggle_train',
-                  '/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/evaluation/kaggle_val'],
+        'roots': ['/home/ocr/datasets/recognition/hindi/evaluation/IIIT',
+                  '/home/ocr/datasets/recognition/hindi/evaluation/kaggle_train',
+                  '/home/ocr/datasets/recognition/hindi/evaluation/kaggle_val'],
         'img_height': 32,
         'img_width': 128,
         'transform': transforms.Compose([transforms.ToTensor()]),
