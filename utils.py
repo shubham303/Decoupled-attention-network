@@ -83,7 +83,7 @@ class Attention_AR_counter():
             self.total_W += len(l_words)
             self.correct = self.correct + 1 if labels[i] == prdt_texts[i] else self.correct
 
-    def show(self):
+    def show(self, wandb = None):
     # Accuracy for scene text. 
     # CER and WER for handwritten text.
         print(self.display_string)
@@ -94,6 +94,12 @@ class Attention_AR_counter():
             1 - self.distance_C / self.total_C,
             self.distance_C / self.total_C,
             self.distance_W / self.total_W))
+        if wandb:
+            wandb.log({"{}_accuracy".format(self.display_string) : self.correct / self.total_samples,
+                       "{}_AR".format(self.display_string) :   1 - self.distance_C / self.total_C,
+                       "{}_CER".format(self.display_string) :   self.distance_C / self.total_C,
+                       "{}_WER".format(self.display_string) :   self.distance_W / self.total_W})
+            
         self.clear()
 
 class Loss_counter():

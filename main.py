@@ -10,6 +10,7 @@ import datetime
 #------------------------
 from utils import *
 import cfgs_scene as cfgs
+import wandb
 #------------------------
 def display_cfgs(models):
     print('global_cfgs')
@@ -113,6 +114,7 @@ def test(test_loader, model, tools):
 #---------------------------------------------------------
 if __name__ == '__main__':
     # prepare nets, optimizers and data
+    wandb.init(project="DAN", entity="cs20m064")
     model = load_network()
     display_cfgs(model)
     optimizers, optimizer_schedulers = generate_optimizer(model)
@@ -168,6 +170,7 @@ if __name__ == '__main__':
                                     batch_idx,
                                     total_iters,
                                     loss_counter.get_loss()))
+                wandb.log({"train_loss": loss_counter.get_loss()})
                 train_acc_counter.show()
             if batch_idx % cfgs.global_cfgs['test_interval'] == 0 and batch_idx != 0:
                 test((test_loader), 
