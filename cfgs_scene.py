@@ -69,9 +69,9 @@ net_cfgs = {
         'dropout': 0.3,
     },
 
-    'init_state_dict_fe': None,
-    'init_state_dict_cam': None,
-    'init_state_dict_dtd': None,
+    'init_state_dict_fe': "/home/ocr/program/Decoupled-attention-network/models/scene/exp1_E2_I140000-159588_M0.pth",
+    'init_state_dict_cam':"/home/ocr/program/Decoupled-attention-network/models/scene/exp1_E2_I140000-159588_M1.pth",
+    'init_state_dict_dtd': "/home/ocr/program/Decoupled-attention-network/models/scene/exp1_E2_I140000-159588_M2.pth",
 }
 
 optimizer_cfgs = {
