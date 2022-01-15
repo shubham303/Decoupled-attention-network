@@ -165,12 +165,13 @@ if __name__ == '__main__':
             # visualization and saving
             if batch_idx % cfgs.global_cfgs['show_interval'] == 0 and batch_idx != 0:
                 print(datetime.datetime.now().strftime('%H:%M:%S'))
+                loss=loss_counter.get_loss()
                 print('Epoch: {}, Iter: {}/{}, Loss dan: {}'.format(
                                     nEpoch,
                                     batch_idx,
                                     total_iters,
-                                    loss_counter.get_loss()))
-                wandb.log({"train_loss": loss_counter.get_loss()})
+                                    loss))
+                wandb.log({"train_loss": loss})
                 train_acc_counter.show(wandb)
             if batch_idx % cfgs.global_cfgs['test_interval'] == 0 and batch_idx != 0:
                 test((test_loader), 
