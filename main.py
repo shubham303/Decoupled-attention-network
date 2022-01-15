@@ -107,7 +107,7 @@ def test(test_loader, model, tools):
         A = model[1](features)
         output, out_length = model[2](features[-1], A, target, length, True)
         tools[2].add_iter(output, out_length, length, label)
-    tools[2].show()
+    tools[2].show(wandb)
     Train_or_Eval(model, 'Train')
 #---------------------------------------------------------
 #--------------------------Begin--------------------------
@@ -171,7 +171,7 @@ if __name__ == '__main__':
                                     total_iters,
                                     loss_counter.get_loss()))
                 wandb.log({"train_loss": loss_counter.get_loss()})
-                train_acc_counter.show()
+                train_acc_counter.show(wandb)
             if batch_idx % cfgs.global_cfgs['test_interval'] == 0 and batch_idx != 0:
                 test((test_loader), 
                      model, 
