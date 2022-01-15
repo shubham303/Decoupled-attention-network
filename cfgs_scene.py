@@ -78,7 +78,7 @@ optimizer_cfgs = {
     # optim for FE
     'optimizer_0': optim.Adadelta,
     'optimizer_0_args':{
-        'lr': 1.0,
+        'lr': 0.001,
     },
 
     'optimizer_0_scheduler': optim.lr_scheduler.MultiStepLR,
@@ -90,7 +90,7 @@ optimizer_cfgs = {
     # optim for CAM
     'optimizer_1': optim.Adadelta,
     'optimizer_1_args':{
-        'lr': 1.0,
+        'lr': 0.001,
     },
     'optimizer_1_scheduler': optim.lr_scheduler.MultiStepLR,
     'optimizer_1_scheduler_args': {
@@ -101,7 +101,7 @@ optimizer_cfgs = {
     # optim for DTD
     'optimizer_2': optim.Adadelta,
     'optimizer_2_args':{
-        'lr': 1.0,
+        'lr': 0.001,
     },
     'optimizer_2_scheduler': optim.lr_scheduler.MultiStepLR,
     'optimizer_2_scheduler_args': {
