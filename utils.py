@@ -101,6 +101,9 @@ class Attention_AR_counter():
                        "{}_WER".format(self.display_string) :   self.distance_W / self.total_W})
             
         self.clear()
+        
+    def get_accuracy(self):
+        return  self.correct / self.total_samples
 
 class Loss_counter():
     def __init__(self, display_interval):

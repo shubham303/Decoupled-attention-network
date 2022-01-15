@@ -107,8 +107,10 @@ def test(test_loader, model, tools):
         A = model[1](features)
         output, out_length = model[2](features[-1], A, target, length, True)
         tools[2].add_iter(output, out_length, length, label)
+    accuracy = tools[2].get_accuracy()
     tools[2].show(wandb)
     Train_or_Eval(model, 'Train')
+    return accuracy
 #---------------------------------------------------------
 #--------------------------Begin--------------------------
 #---------------------------------------------------------
@@ -137,6 +139,7 @@ if __name__ == '__main__':
         exit()
     # --------------------------------
     total_iters = len(train_loader)
+    best_accuracy=0
     for nEpoch in range(0, cfgs.global_cfgs['epoch']):
         for batch_idx, sample_batched in enumerate(train_loader):
             # data prepare
@@ -174,11 +177,17 @@ if __name__ == '__main__':
                 wandb.log({"train_loss": loss})
                 train_acc_counter.show(wandb)
             if batch_idx % cfgs.global_cfgs['test_interval'] == 0 and batch_idx != 0:
-                test((test_loader), 
+                accuracy = test((test_loader),
                      model, 
                     [encdec,
                      flatten_label,
                      test_acc_counter])
+                if accuracy > best_accuracy:
+                    for i in range(0, len(model)):
+                        torch.save(model[i].state_dict(),
+                                   cfgs.saving_cfgs['saving_path'] + 'best_acc_M{}.pth'.format(i))
+                    best_accuracy=accuracy
+                    
             if nEpoch % cfgs.saving_cfgs['saving_epoch_interval'] == 0 and \
                batch_idx % cfgs.saving_cfgs['saving_iter_interval'] == 0 and \
                batch_idx != 0:
