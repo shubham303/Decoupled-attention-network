@@ -7,10 +7,11 @@ from torch.autograd import Variable
 from torchvision import transforms
 from torch.utils.data import Dataset, DataLoader
 import datetime
+
+
 #------------------------
 from utils import *
-import cfgs_scene as cfgs
-import wandb
+import cfgs_scene_ml as cfgs
 #------------------------
 def display_cfgs(models):
     print('global_cfgs')
@@ -108,7 +109,7 @@ def test(test_loader, model, tools):
         output, out_length = model[2](features[-1], A, target, length, True)
         tools[2].add_iter(output, out_length, length, label)
     accuracy = tools[2].get_accuracy()
-    tools[2].show(wandb)
+    tools[2].show()
     Train_or_Eval(model, 'Train')
     return accuracy
 #---------------------------------------------------------
@@ -116,7 +117,7 @@ def test(test_loader, model, tools):
 #---------------------------------------------------------
 if __name__ == '__main__':
     # prepare nets, optimizers and data
-    wandb.init(project="DAN", entity="cs20m064")
+
     model = load_network()
     display_cfgs(model)
     optimizers, optimizer_schedulers = generate_optimizer(model)
@@ -174,8 +175,8 @@ if __name__ == '__main__':
                                     batch_idx,
                                     total_iters,
                                     loss))
-                wandb.log({"train_loss": loss})
-                train_acc_counter.show(wandb)
+              
+                train_acc_counter.show()
             if batch_idx % cfgs.global_cfgs['test_interval'] == 0 and batch_idx != 0:
                 accuracy = test((test_loader),
                      model, 

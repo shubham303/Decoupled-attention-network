@@ -16,7 +16,7 @@ global_cfgs = {
 dataset_cfgs = {
     'dataset_train': lmdbDataset,
     'dataset_train_args': {
-        'roots': ['/usr/datasets/synthetic_text_dataset/lmdb_dataset_Hindi/hindi/training/ST'],
+        'roots': ['/usr/datasets/synthetic_text_dataset/lmdb_dataset/malayalam/training/ST'],
         'img_height': 32,
         'img_width': 128,
         'transform': transforms.Compose([transforms.ToTensor()]),
@@ -30,7 +30,7 @@ dataset_cfgs = {
 
     'dataset_test': lmdbDataset,
     'dataset_test_args': {
-        'roots': ['/home/ocr/datasets/recognition/hindi/evaluation/IIIT'],
+        'roots': ['/usr/datasets/synthetic_text_dataset/lmdb_dataset/malayalam/evaluation/IIIT'],
         'img_height': 32,
         'img_width': 128,
         'transform': transforms.Compose([transforms.ToTensor()]),
@@ -66,9 +66,9 @@ net_cfgs = {
         'dropout': 0.3,
     },
 
-    'init_state_dict_fe': "models/scene/exp1_best_acc_M0.pth",
-    'init_state_dict_cam':"models/scene/exp1_best_acc_M1.pth",
-    'init_state_dict_dtd': "models/scene/exp1_best_acc_M2.pth",
+    'init_state_dict_fe':None,
+    'init_state_dict_cam':None,
+    'init_state_dict_dtd': None,
 }
 
 optimizer_cfgs = {

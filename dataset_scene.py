@@ -12,6 +12,8 @@ import numpy as np
 import pdb
 import os
 import cv2
+from abfn import abfn
+
 
 class lmdbDataset(Dataset):
 
@@ -22,6 +24,7 @@ class lmdbDataset(Dataset):
         self.lengths = []
         self.ratio = []
         self.global_state = global_state
+        self.abfn_filter = abfn.ABFN()
         for i in range(0,len(roots)):
             env = lmdb.open(
                 roots[i],
@@ -31,7 +34,7 @@ class lmdbDataset(Dataset):
                 readahead=False,
                 meminit=False)
             if not env:
-                print('cannot creat lmdb from %s' % (root))
+                print('cannot creat lmdb from %s' % (roots[i]))
                 sys.exit(0)
             with env.begin(write=False) as txn:
                 nSamples = int(txn.get('num-samples'.encode()))
@@ -109,6 +112,8 @@ class lmdbDataset(Dataset):
             if len(label) > 24 and self.global_state == 'Train':
                 print('sample too long')
                 return self[index + 1]
+            if not self.abfn_filter.is_valid_label(label):
+                return  self[index+1]
             try:
                 img = self.keepratio_resize(img)
             except:
