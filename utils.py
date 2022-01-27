@@ -1,3 +1,5 @@
+import re
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -62,6 +64,8 @@ class Attention_AR_counter():
         self.total_W = 0.
         
     def add_iter(self, output, out_length, label_length, labels):
+        """correct= open("correct.txt", "a")
+        incorrect = open("incorrect.txt", "a")"""
         start = 0
         start_o = 0
         self.total_samples += label_length.size()[0]
@@ -77,12 +81,29 @@ class Attention_AR_counter():
                     all_words.append(w)
             l_words = [all_words.index(_) for _ in labels[i].split('|')]
             p_words = [all_words.index(_) for _ in prdt_texts[i].split('|')]
-            self.distance_C += ed.eval(labels[i], prdt_texts[i])
+
+            test_char = open("dict/dic_ml.txt", "r").read().replace("\n", "")
+            out_of_char = f'[^{test_char}]'
+            # replace those character not in self.character with ''
+            labels[i] = re.sub(out_of_char, '+', labels[i].lower())
+            prdt_texts[i] =  re.sub(out_of_char, '', prdt_texts[i].lower())
+            
+            """
+            if "+" in labels[i] or "+" in   prdt_texts[i]:
+                continue
+            if labels[i].replace(" ", "") == prdt_texts[i].replace(" ", ""):
+                correct.write("{},{}\n".format(labels[i], prdt_texts[i]))
+            else:
+                incorrect.write("{},{}\n".format(labels[i], prdt_texts[i]))"""
+            
+            self.distance_C += ed.eval(labels[i].replace(" ", ""), prdt_texts[i].replace(" ", ""))
             self.distance_W += ed.eval(l_words, p_words)
             self.total_C += len(labels[i])
             self.total_W += len(l_words)
             self.correct = self.correct + 1 if labels[i] == prdt_texts[i] else self.correct
-
+        """correct.close()
+        incorrect.close()
+        """
     def show(self, wandb = None):
     # Accuracy for scene text. 
     # CER and WER for handwritten text.
