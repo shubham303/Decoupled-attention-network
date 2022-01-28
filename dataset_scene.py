@@ -110,7 +110,7 @@ class lmdbDataset(Dataset):
             label_key = 'label-%09d' % index
             label = txn.get(label_key.encode()).decode('utf-8')
             if len(label) > 24 and self.global_state == 'Train':
-                print('sample too long')
+                #print('sample too long')
                 return self[index + 1]
             if not self.abfn_filter.is_valid_label(label):
                 return  self[index+1]
