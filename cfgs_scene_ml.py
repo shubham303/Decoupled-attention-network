@@ -9,7 +9,7 @@ from DAN import *
 global_cfgs = {
     'state': 'Train',
     'epoch': 10,
-    'show_interval': 50,
+    'show_interval': 500,
     'test_interval': 1000
 }
 
@@ -67,9 +67,10 @@ net_cfgs = {
         'dropout': 0.3,
     },
 
-    'init_state_dict_fe':None,
-    'init_state_dict_cam':None,
-    'init_state_dict_dtd': None,
+    'init_state_dict_fe':"/nlsasfs/home/ai4bharat/shubhamr/shubham/programs/Decoupled-attention-network/models/scene/exp1_best_acc_M0.pth",
+    'init_state_dict_cam':"/nlsasfs/home/ai4bharat/shubhamr/shubham/programs/Decoupled-attention-network/models/scene"
+                          "/exp1_best_acc_M1.pth",
+    'init_state_dict_dtd': "/nlsasfs/home/ai4bharat/shubhamr/shubham/programs/Decoupled-attention-network/models/scene/exp1_best_acc_M2.pth"
 }
 
 optimizer_cfgs = {
@@ -109,9 +110,8 @@ optimizer_cfgs = {
 }
 
 saving_cfgs = {
-    'saving_iter_interval': 20000,
+    'saving_iter_interval': 10000,
     'saving_epoch_interval': 1,
-
     'saving_path': 'models/scene/exp1_',
 }
 
