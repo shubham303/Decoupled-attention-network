@@ -9,7 +9,7 @@ from DAN import *
 global_cfgs = {
     'state': 'Train',
     'epoch': 10,
-    'show_interval': 500,
+    'show_interval': 1000,
     'test_interval': 1000
 }
 
