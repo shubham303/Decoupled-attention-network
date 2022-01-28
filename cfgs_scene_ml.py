@@ -16,7 +16,8 @@ global_cfgs = {
 dataset_cfgs = {
     'dataset_train': lmdbDataset,
     'dataset_train_args': {
-        'roots': ['/nlsasfs/home/ai4bharat/shubhamr/shubham/recognition-dataset/malayalam/training/ST'],
+        'roots': ['/nlsasfs/home/ai4bharat/shubhamr/shubham/recognition-dataset/malayalam/training/MJ/MJ_test', '/nlsasfs/home/ai4bharat/shubhamr/shubham/recognition-dataset/malayalam/training/MJ/MJ_train'
+                  ,'/nlsasfs/home/ai4bharat/shubhamr/shubham/recognition-dataset/malayalam/training/ST'],
         'img_height': 32,
         'img_width': 128,
         'transform': transforms.Compose([transforms.ToTensor()]),
