@@ -112,7 +112,7 @@ optimizer_cfgs = {
 saving_cfgs = {
     'saving_iter_interval': 10000,
     'saving_epoch_interval': 1,
-    'saving_path': 'models/scene/exp1_',
+    'saving_path': 'models/scene/exp2_',
 }
 
 def mkdir(path_):
