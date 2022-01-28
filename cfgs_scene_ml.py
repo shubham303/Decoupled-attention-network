@@ -23,7 +23,7 @@ dataset_cfgs = {
         'global_state': 'Train',
     },
     'dataloader_train': {
-        'batch_size': 12,
+        'batch_size': 48,
         'shuffle': True,
         'num_workers': 3,
     },
