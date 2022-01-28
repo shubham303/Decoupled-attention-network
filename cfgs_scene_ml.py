@@ -16,7 +16,7 @@ global_cfgs = {
 dataset_cfgs = {
     'dataset_train': lmdbDataset,
     'dataset_train_args': {
-        'roots': ['/usr/datasets/synthetic_text_dataset/lmdb_dataset/malayalam/training/ST'],
+        'roots': ['/nlsasfs/home/ai4bharat/shubhamr/shubham/recognition-dataset/malayalam/training/ST'],
         'img_height': 32,
         'img_width': 128,
         'transform': transforms.Compose([transforms.ToTensor()]),
@@ -30,7 +30,7 @@ dataset_cfgs = {
 
     'dataset_test': lmdbDataset,
     'dataset_test_args': {
-        'roots': ['/usr/datasets/synthetic_text_dataset/lmdb_dataset/malayalam/evaluation/IIIT'],
+        'roots': ['/nlsasfs/home/ai4bharat/shubhamr/shubham/recognition-dataset/malayalam/evaluation/IIIT'],
         'img_height': 32,
         'img_width': 128,
         'transform': transforms.Compose([transforms.ToTensor()]),
