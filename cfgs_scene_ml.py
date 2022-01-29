@@ -67,10 +67,12 @@ net_cfgs = {
         'dropout': 0.3,
     },
 
-    'init_state_dict_fe':"/nlsasfs/home/ai4bharat/shubhamr/shubham/programs/Decoupled-attention-network/models/scene/exp1_best_acc_M0.pth",
+    'init_state_dict_fe':"/nlsasfs/home/ai4bharat/shubhamr/shubham/programs/Decoupled-attention-network/models/scene"
+                         "/exp2_E0_I30000-98451_M0.pth",
     'init_state_dict_cam':"/nlsasfs/home/ai4bharat/shubhamr/shubham/programs/Decoupled-attention-network/models/scene"
-                          "/exp1_best_acc_M1.pth",
-    'init_state_dict_dtd': "/nlsasfs/home/ai4bharat/shubhamr/shubham/programs/Decoupled-attention-network/models/scene/exp1_best_acc_M2.pth"
+                          "/exp2_E0_I30000-98451_M1.pth",
+    'init_state_dict_dtd': "/nlsasfs/home/ai4bharat/shubhamr/shubham/programs/Decoupled-attention-network/models"
+                           "/scene/exp2_E0_I30000-98451_M2.pth"
 }
 
 optimizer_cfgs = {
